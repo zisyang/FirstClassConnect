@@ -27,6 +27,9 @@ To install Node.js dependencies you're going to use npm again, in the applicatio
 
 ```
 $ npm install
+######## don't know why below two need to run again without -g, in order to work #######
+$ sudo npm install mocha
+$ sudo npm install grunt
 ```
 
 This command does a few things:
