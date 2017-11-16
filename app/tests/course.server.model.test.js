@@ -6,37 +6,37 @@
 var should = require('should'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
-	Category = mongoose.model('Category');
+	Course = mongoose.model('Course');
 
 /**
  * Globals
  */
-var user, category;
+var user, course;
 
 /**
  * Unit tests
  */
- describe('Category Model', function() {
+ describe('Course Model', function() {
 
      describe('Saving', function() {
          it('saves new record', function(done) {
-             var category = new Category({
+             var course = new Course({
                  name: 'Beverages',
                  description: 'Soft drinks, coffees, teas, beers, and ales'
              });
 
-             category.save(function(err, saved) {
+             course.save(function(err, saved) {
                  should.not.exist(err);
                  done();
              });
          });
 
          it('throws validation error when name is empty', function(done) {
-             var category = new Category({
-                 description: 'Soft drinks, coffees, teas, beers, and ales'
+             var course = new Course({
+                 description: 'Computer Engineering'
              });
 
-             category.save(function(err) {
+             course.save(function(err) {
                  should.exist(err);
                  err.errors.name.message.should.equal('name cannot be blank');
                  done();
@@ -44,27 +44,27 @@ var user, category;
          });
 
          it('throws validation error when name longer than 15 chars', function(done) {
-             var category = new Category({
-                 name: 'Grains/Cereals/Chocolates'
+             var course = new Course({
+                 name: 'Java programming'
              });
 
-             category.save(function(err, saved) {
+             course.save(function(err, saved) {
                  should.exist(err);
                  err.errors.name.message.should.equal('name must be 15 chars in length or less');
                  done();
              });
          });
 
-         it('throws validation error for duplicate category name', function(done) {
-             var category = new Category({
-                 name: 'Beverages'
+         it('throws validation error for duplicate course name', function(done) {
+             var course = new Course({
+                 name: 'Software Engineering'
              });
 
-             category.save(function(err) {
+             course.save(function(err) {
                  should.not.exist(err);
 
-                 var duplicate = new Category({
-                     name: 'Beverages'
+                 var duplicate = new Course({
+                     name: 'Software Engineering'
                  });
 
                  duplicate.save(function(err) {
@@ -78,13 +78,13 @@ var user, category;
      });
 
      afterEach(function(done) {
-         // NB this deletes ALL categories (but is run against a test database)
-         Category.remove().exec();
+         // NB this deletes ALL courses (but is run against a test database)
+         Course.remove().exec();
          done();
      });
  });
 
-describe('Category Model Unit Tests:', function() {
+describe('Course Model Unit Tests:', function() {
 	beforeEach(function(done) {
 		user = new User({
 			firstName: 'Full',
@@ -96,7 +96,7 @@ describe('Category Model Unit Tests:', function() {
 		});
 
 		user.save(function() {
-			category = new Category({
+			course = new Course({
 				// Add model fields
 				// ...
 			});
@@ -107,7 +107,7 @@ describe('Category Model Unit Tests:', function() {
 
 	describe('Method Save', function() {
 		it('should be able to save without problems', function(done) {
-			return category.save(function(err) {
+			return course.save(function(err) {
 				should.not.exist(err);
 				done();
 			});
@@ -115,7 +115,7 @@ describe('Category Model Unit Tests:', function() {
 	});
 
 	afterEach(function(done) {
-		Category.remove().exec();
+		Course.remove().exec();
 		User.remove().exec();
 
 		done();

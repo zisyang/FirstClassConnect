@@ -13,16 +13,26 @@ var init = require('./config/init')(),
  */
 
 // Bootstrap db connection
-var uri = config.db;
-//mongoose.connect(uri);
-var db = mongoose.connect(uri, function(err) {
+var db = mongoose.connect(config.db, function(err) {
 	if (err) {
 		console.error(chalk.red('Could not connect to MongoDB!'));
 		console.log(chalk.red(err));
 	}
-	else
-		console.log(chalk.green('MongoDB readyState : ' + mongoose.connection.readyState));
+	status();
 });
+
+function status(){
+	switch (mongoose.connection.readyState) {
+		case 0:
+			console.log(chalk.red('MongoDB not connected'));
+			break;
+		case 2:
+			console.log(chalk.yellow('MongoDB not Ready'));
+			break;
+		default:
+			console.log(chalk.green('MongoDB Ready'));
+	};
+};
 
 // Init the express application
 var app = require('./config/express')(db);

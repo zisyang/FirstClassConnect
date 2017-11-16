@@ -1,10 +1,10 @@
 'use strict';
 
 (function() {
-	// Categories Controller Spec
-	describe('Categories Controller Tests', function() {
+	// Courses Controller Spec
+	describe('Courses Controller Tests', function() {
 		// Initialize global variables
-		var CategoriesController,
+		var CoursesController,
 			scope,
 			$httpBackend,
 			$stateParams,
@@ -44,8 +44,8 @@
 			$httpBackend = _$httpBackend_;
 			$location = _$location_;
 
-			// Initialize the Categories controller.
-			CategoriesController = $controller('CategoriesController', {
+			// Initialize the Courses controller.
+			CoursesController = $controller('CoursesController', {
 				$scope: scope
 			});
 		}));

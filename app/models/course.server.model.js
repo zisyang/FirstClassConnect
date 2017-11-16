@@ -15,10 +15,10 @@ function validateLength (v) {
 }
 
 /**
- * Category Schema
+ * Course Schema
  */
-var CategorySchema = new Schema({
-	// Category model fields
+var CourseSchema = new Schema({
+	// Course model fields
 	// the property name
 	created: {
 			// types are defined e.g. String, Date, Number (http://mongoosejs.com/docs/guide.html)
@@ -45,4 +45,4 @@ var CategorySchema = new Schema({
 });
 
 // Expose the model to other objects (similar to a 'public' setter).
-mongoose.model('Category', CategorySchema);
+mongoose.model('Course', CourseSchema);

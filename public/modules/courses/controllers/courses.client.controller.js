@@ -1,13 +1,13 @@
 'use strict';
 
-// Categories controller
-angular.module('categories').controller('CategoriesController', [
+// Courses controller
+angular.module('courses').controller('CoursesController', [
 	'$scope',
 	'$stateParams',
 '$location',
 'Authentication',
-'Categories',
-	function($scope, $stateParams, $location, Authentication, Categories) {
+'Courses',
+	function($scope, $stateParams, $location, Authentication, Courses) {
 		// Controller Logic
 		$scope.authentication = Authentication;
 		$scope.currentPage = 1;
@@ -19,17 +19,17 @@ angular.module('categories').controller('CategoriesController', [
 			 $scope.offset = ($scope.currentPage - 1) * $scope.pageSize;
 		};
 
-				// Create new Category
+				// Create new Course
 				$scope.create = function() {
-					// Create new Category object
-						var category = new Categories ({
+					// Create new Course object
+						var course = new Courses ({
 							name: this.name,
 							description: this.description
 						});
 
 					// Redirect after save
-					category.$save(function(response) {
-						$location.path('categories');// + response._id);
+					course.$save(function(response) {
+						$location.path('courses');// + response._id);
 
 						// Clear form fields
 						$scope.name = '';
@@ -38,35 +38,35 @@ angular.module('categories').controller('CategoriesController', [
 					});
 				};
 
-				// Remove existing Category
-				$scope.remove = function(category) {
-					if ( category ) {
-						category.$remove();
+				// Remove existing Course
+				$scope.remove = function(course) {
+					if ( course ) {
+						course.$remove();
 
-						for (var i in $scope.categories) {
-							if ($scope.categories [i] === category) {
-								$scope.categories.splice(i, 1);
+						for (var i in $scope.courses) {
+							if ($scope.courses [i] === course) {
+								$scope.courses.splice(i, 1);
 							}
 						}
 					} else {
-						$scope.category.$remove(function() {
-							$location.path('categories');
+						$scope.course.$remove(function() {
+							$location.path('courses');
 						});
 					}
 				};
 
-				// Update existing Category
+				// Update existing Course
 				$scope.update = function() {
-					var category = $scope.category;
+					var course = $scope.course;
 
-					category.$update(function() {
-						$location.path('categories/' + category._id);
+					course.$update(function() {
+						$location.path('courses/' + course._id);
 					}, function(errorResponse) {
 						$scope.error = errorResponse.data.message;
 					});
 				};
 
-				// Find a list of Categories
+				// Find a list of Courses
 				$scope.find = function() {
 					// hard coded data test
 					var sample = [{
@@ -77,19 +77,19 @@ angular.module('categories').controller('CategoriesController', [
 						'name': 'Condiments',
 						'description': 'Sweet and savory sauces, relishes, spreads, and seasonings'
 					}];
-					$scope.categories = Categories.query();
+					$scope.courses = Courses.query();
 				};
 
-				// Find existing Category
+				// Find existing Course
 						$scope.findOne = function() {
-							$scope.category = Categories.get({
-								categoryId: $stateParams.categoryId
+							$scope.course = Courses.get({
+								courseId: $stateParams.courseId
 							});
 						};
 
-						// Search for a category
-						$scope.categorySearch = function(product) {
-							$location.path('categories/' + product._id);
+						// Search for a course
+						$scope.courseSearch = function(product) {
+							$location.path('courses/' + product._id);
 						};
 
 	}
