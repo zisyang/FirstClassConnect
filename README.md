@@ -7,7 +7,7 @@ Make sure you have installed all these prerequisites on your development machine
 * Bower - You're going to use the [Bower Package Manager](http://bower.io/) to manage your front-end packages, in order to install it make sure you've installed Node.js and npm, then install bower globally using npm:
 
 ```
-$ npm install -g bower
+$ sudo npm install -g bower
 ```
 
 * Grunt - You're going to use the [Grunt Task Runner](http://gruntjs.com/) to automate your development process, in order to install it make sure you've installed Node.js and npm, then install grunt globally using npm:
