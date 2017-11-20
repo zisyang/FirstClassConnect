@@ -10,7 +10,7 @@ angular.module('feeds').controller('FeedsController', ['$scope', '$stateParams',
 				content: this.content
 			});
 			feed.$save(function(response) {
-				$location.path('feeds/' + response._id);
+				$location.path('feeds');///' + response._id);
 
 				$scope.title = '';
 				$scope.content = '';
@@ -39,7 +39,7 @@ angular.module('feeds').controller('FeedsController', ['$scope', '$stateParams',
 			var feed = $scope.feed;
 
 			feed.$update(function() {
-				$location.path('feeds/' + feed._id);
+				$location.path('feeds'); ///' + feed._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

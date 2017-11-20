@@ -17,33 +17,50 @@ exports.signup = function(req, res) {
 	delete req.body.roles;
 
 	// Init Variables
-	var user = new User(req.body);
+	var newuser = new User(req.body);
 	var message = null;
 
 	// Add missing user fields
-	user.provider = 'local';
-	user.displayName = user.firstName + ' ' + user.lastName;
+	newuser.provider = 'local';
+	newuser.displayName = newuser.firstName + ' ' + newuser.lastName;
+	newuser.username = newuser.email;
 
-	// Then save the user 
-	user.save(function(err) {
+	User.findOne({
+		email: newuser.email
+	}, function(err, user) {
 		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
+			return done(err);
 		} else {
-			// Remove sensitive data before login
-			user.password = undefined;
-			user.salt = undefined;
+			if (!user) {
+				// Then save the user
+				newuser.save(function(err) {
+					if (err) {
+						return res.status(400).send({
+							message: errorHandler.getErrorMessage(err)
+						});
+					} else {
+						// Remove sensitive data before login
+						newuser.password = undefined;
+						newuser.salt = undefined;
 
-			req.login(user, function(err) {
-				if (err) {
-					res.status(400).send(err);
-				} else {
-					res.json(user);
-				}
-			});
+						req.login(newuser, function(err) {
+							if (err) {
+								res.status(400).send(err);
+							} else {
+								res.json(newuser);
+							}
+						});
+					}
+				});
+
+			} else {
+				return res.status(400).send({
+					message: 'User already exists'
+				});
+			}
 		}
 	});
+
 };
 
 /**

@@ -13,7 +13,10 @@ var init = require('./config/init')(),
  */
 
 // Bootstrap db connection
-var db = mongoose.connect(config.db, function(err) {
+// var uri = 'mongodb://mongodb-stitch-fcc-eysro:ltXAYleAUAKrXQTu@cluster0-shard-00-00-2pmo6.mongodb.net:27017/mean-dev?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin';
+//mongoose.connect(uri);
+var uri = config.db; //localhost
+var db = mongoose.connect(uri, function(err) {
 	if (err) {
 		console.error(chalk.red('Could not connect to MongoDB!'));
 		console.log(chalk.red(err));
