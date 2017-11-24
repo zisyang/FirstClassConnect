@@ -41,6 +41,10 @@ var CourseSchema = new Schema({
 			required: 'name cannot be blank',
 			// wires in a custom validator function (http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate).
 			validate: [validateLength, 'name must be 15 chars in length or less']
+	},
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User'
 	}
 });
 

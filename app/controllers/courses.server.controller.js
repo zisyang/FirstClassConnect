@@ -13,6 +13,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
   var course = new Course(req.body);
+  course.user = req.user;
 
   	course.save(function(err) {
   		if (err) {
@@ -53,6 +54,8 @@ exports.update = function(req, res) {
 
 	course = _.extend(course, req.body);
 
+  //#course.user = req.user.id; // for when using listAll
+
 	course.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -82,9 +85,27 @@ exports.delete = function(req, res) {
 };
 
 /**
- * List of Courses
+ * List of Courses by user
  */
 exports.list = function(req, res) {
+  Course.find({
+    user:req.user.id
+  }).exec(function(err, courses) {
+      if (err) {
+          return res.status(400).send({
+              message: errorHandler.getErrorMessage(err)
+          });
+      } else {
+          res.json(courses);
+      }
+    });
+};
+
+
+/**
+ * List of All Courses
+ */
+exports.listAll = function(req, res) {
   Course.find().exec(function(err, courses) {
       if (err) {
           return res.status(400).send({
@@ -117,4 +138,14 @@ exports.courseByID = function(req, res, next, id) {
 		req.course = course;
 		next();
 	});
+};
+
+/**
+ * Product authorization middleware
+ */
+exports.hasAuthorization = function(req, res, next) {
+	if (req.course.user.id !== req.user.id) {
+		return res.status(403).send('User is not authorized');
+	}
+	next();
 };
