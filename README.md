@@ -18,6 +18,12 @@ $ sudo npm install -g grunt-cli
 $ sudo npm install -g grunt
 ```
 
+* Socket.io - to have a real time chat room, in order to install it make sure you've installed Node.js and npm, then install grunt globally using npm:
+
+```
+$ npm install --save socket.io
+```
+
 ## Quick Install
 Once you've downloaded the boilerplate and installed all the prerequisites, you're just a few steps away from starting to develop you MEAN application.
 

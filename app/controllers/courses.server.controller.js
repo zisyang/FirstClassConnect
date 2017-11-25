@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
     _ = require('lodash');
 
 /**
- * Create a Course
+ * Add a Course
  */
 exports.create = function(req, res) {
   var course = new Course(req.body);

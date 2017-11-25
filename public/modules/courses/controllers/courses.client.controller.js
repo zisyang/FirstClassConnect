@@ -4,9 +4,9 @@
 angular.module('courses').controller('CoursesController', [
 	'$scope',
 	'$stateParams',
-'$location',
-'Authentication',
-'Courses',
+	'$location',
+	'Authentication',
+	'Courses',
 	function($scope, $stateParams, $location, Authentication, Courses) {
 		// Controller Logic
 		$scope.authentication = Authentication;
@@ -19,78 +19,77 @@ angular.module('courses').controller('CoursesController', [
 			 $scope.offset = ($scope.currentPage - 1) * $scope.pageSize;
 		};
 
-				// Create new Course
-				$scope.create = function() {
-					// Create new Course object
-						var course = new Courses ({
-							name: this.name,
-							description: this.description
-						});
+		// Create new Course
+		$scope.create = function() {
+			// Create new Course object
+				var course = new Courses ({
+					name: this.name,
+					description: this.description
+				});
 
-					// Redirect after save
-					course.$save(function(response) {
-						$location.path('courses');// + response._id);
+			// Redirect after save
+			course.$save(function(response) {
+				$location.path('courses');// + response._id);
 
-						// Clear form fields
-						$scope.name = '';
-					}, function(errorResponse) {
-						$scope.error = errorResponse.data.message;
-					});
-				};
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
 
-				// Remove existing Course
-				$scope.remove = function(course) {
-					if ( course ) {
-						course.$remove();
+		// Remove existing Course
+		$scope.remove = function(course) {
+			if ( course ) {
+				course.$remove();
 
-						for (var i in $scope.courses) {
-							if ($scope.courses [i] === course) {
-								$scope.courses.splice(i, 1);
-							}
-						}
-					} else {
-						$scope.course.$remove(function() {
-							$location.path('courses');
-						});
+				for (var i in $scope.courses) {
+					if ($scope.courses [i] === course) {
+						$scope.courses.splice(i, 1);
 					}
-				};
+				}
+			} else {
+				$scope.course.$remove(function() {
+					$location.path('courses');
+				});
+			}
+		};
 
-				// Update existing Course
-				$scope.update = function() {
-					var course = $scope.course;
+		// Update existing Course
+		$scope.update = function() {
+			var course = $scope.course;
 
-					course.$update(function() {
-						$location.path('courses/' + course._id);
-					}, function(errorResponse) {
-						$scope.error = errorResponse.data.message;
-					});
-				};
+			course.$update(function() {
+				$location.path('courses/' + course._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
 
-				// Find a list of Courses
-				$scope.find = function() {
-					// hard coded data test
-					var sample = [{
-						'name': 'Beverages',
-						'description': 'Soft drinks, coffees, teas, beers, and ales'
-					},
-					{
-						'name': 'Condiments',
-						'description': 'Sweet and savory sauces, relishes, spreads, and seasonings'
-					}];
-					$scope.courses = Courses.query();
-				};
+		// Find a list of Courses
+		$scope.find = function() {
+			// hard coded data test
+			var sample = [{
+				'name': 'Beverages',
+				'description': 'Soft drinks, coffees, teas, beers, and ales'
+			},
+			{
+				'name': 'Condiments',
+				'description': 'Sweet and savory sauces, relishes, spreads, and seasonings'
+			}];
+			$scope.courses = Courses.query();
+		};
 
-				// Find existing Course
-						$scope.findOne = function() {
-							$scope.course = Courses.get({
-								courseId: $stateParams.courseId
-							});
-						};
+		// Find existing Course
+		$scope.findOne = function() {
+			$scope.course = Courses.get({
+				courseId: $stateParams.courseId
+			});
+		};
 
-						// Search for a course
-						$scope.courseSearch = function(product) {
-							$location.path('courses/' + product._id);
-						};
-
+		// Search for a course
+		$scope.courseSearch = function(product) {
+			$location.path('courses/' + product._id);
+		};
 	}
 ]);

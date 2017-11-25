@@ -44,10 +44,20 @@ var app = require('./config/express')(db);
 require('./config/passport')();
 
 // Start the app by listening on <port>
-app.listen(config.port);
+//###app.listen(config.port);
+// Added socket.io support
+var http = require('http');
+var serve = http.createServer(app);
+
+var	socketEvents = require('./socketEvents');
+
+var io = require('socket.io').listen(serve);
+socketEvents(io);
 
 // Expose app
 exports = module.exports = app;
 
 // Logging initialization
+serve.listen(config.port, function() {
 console.log('MEAN.JS application started on port ' + config.port);
+});

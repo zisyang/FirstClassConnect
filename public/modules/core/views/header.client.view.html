@@ -6,11 +6,13 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="/#!/" class="navbar-brand">FirstClassConnect</a>
+		<a href="/#!/" class="navbar-brand">
+			<i class="glyphicon glyphicon-cloud"></i>
+			FirstClassConnect</a>
 	</div>
 	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
 		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
-			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
+			<li data-ng-repeat="item in menu.items | orderBy: '-title'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
 				<a href="#" ng-switch-when="dropdown" class="dropdown-toggle">
 					<span data-ng-bind="item.title"></span>
 					<b class="caret"></b>
@@ -29,27 +31,40 @@
 			</li>
 			<li class="divider-vertical"></li>
 			<li ui-route="/signin" ng-class="{active: $uiRoute}">
-				<a href="/#!/signin">Sign In</a>
+				<a href="/#!/signin">
+					<i class="glyphicon glyphicon-log-in"></i>
+					Sign In</a>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
+					<i class="glyphicon glyphicon-user"></i>&nbsp;
+					<span data-ng-bind="authentication.user.displayName"></span>
+						<i class="glyphicon glyphicon-option-vertical"></i>
+					<!-- <b class="caret"></b> -->
 				</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="/#!/settings/profile">Edit Profile</a>
+						<a href="/#!/settings/profile">
+							<i class="glyphicon glyphicon-pencil"></i>
+							Edit Profile</a>
 					</li>
 					<li>
-						<a href="/#!/settings/accounts">Manage Social Accounts</a>
+						<a href="/#!/settings/accounts">
+							<i class="glyphicon glyphicon-certificate"></i>
+							Manage Social Accounts</a>
 					</li>
 					<li data-ng-show="authentication.user.provider === 'local'">
-						<a href="/#!/settings/password">Change Password</a>
+						<a href="/#!/settings/password">
+							<i class="glyphicon glyphicon-cog"></i>
+							Change Password</a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="/auth/signout">Signout</a>
+						<a href="/auth/signout">
+							<i class="glyphicon glyphicon-log-out"></i>
+							Signout</a>
 					</li>
 				</ul>
 			</li>

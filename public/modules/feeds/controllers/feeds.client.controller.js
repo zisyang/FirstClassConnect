@@ -1,8 +1,22 @@
 'use strict';
 
-angular.module('feeds').controller('FeedsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Feeds',
+// Feeds controller
+angular.module('feeds').controller('FeedsController', [
+	'$scope',
+	'$stateParams',
+	'$location',
+	'Authentication',
+	'Feeds',
 	function($scope, $stateParams, $location, Authentication, Feeds) {
 		$scope.authentication = Authentication;
+		$scope.currentPage = 1;
+		$scope.pageSize = 10;
+		$scope.offset = 0;
+
+		// Page changed handler
+		$scope.pageChanged = function() {
+			 $scope.offset = ($scope.currentPage - 1) * $scope.pageSize;
+		};
 
 		$scope.create = function() {
 			var feed = new Feeds({

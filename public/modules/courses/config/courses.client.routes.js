@@ -9,9 +9,9 @@ angular.module('courses').config(['$stateProvider',
 			url: '/courses',
 			templateUrl: 'modules/courses/views/courses.client.view.html'
 		}).
-		state('createCourse', {
-			url: '/courses/create',
-			templateUrl: 'modules/courses/views/create-course.client.view.html'
+		state('addCourse', {
+			url: '/courses/add',
+			templateUrl: 'modules/courses/views/add-course.client.view.html'
 		}).
 		state('viewCourse', {
 			url: '/courses/:courseId',

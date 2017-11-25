@@ -6,15 +6,15 @@ module.exports = function(app) {
 
 	// Routing logic
   app.route('/courses')
-    .get(courses.list)
-    .post(users.requiresLogin, courses.create);
+    .get(users.requiresLogin, courses.list)
+    .post(users.requiresLogin, courses.create); //add
 		// .get(function (request, response) {
 		// 	response.json([{ name: 'Beverages' }, { name: 'Condiments' }]);
 		// });
 
   // the courseId param is added to the params object for the request
   app.route('/courses/:courseId')
-    .get(courses.read)
+    .get(users.requiresLogin, courses.read)
     .put(users.requiresLogin, courses.update)
     .delete(users.requiresLogin, courses.delete);
 

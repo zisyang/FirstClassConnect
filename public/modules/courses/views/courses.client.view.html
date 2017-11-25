@@ -1,6 +1,9 @@
 <section data-ng-controller="CoursesController" data-ng-init="find()">
 	<div class="page-header">
-		<h1>Courses</h1>
+		<h1><i class="glyphicon glyphicon-book"></i>
+			Courses
+		<a class="btn btn-primary" href="/#!/courses/add">
+			<i class="glyphicon glyphicon-plus"></i></a> </h1>
 	</div>
 	<!-- this is the new search input field -->
 	<div class="form-group">
@@ -10,7 +13,6 @@
 <!--
 			typeahead="course as course.name for course in courses | filter:$viewValue | limitTo:8"
 			typeahead-on-select="courseSearch($item)"
-
  -->
 	</div>
 	<!-- end -->
@@ -27,9 +29,9 @@
 		ng-change="pageChanged()" max-size="pageSize"
 		ng-show="courses.length > pageSize"></pagination>
 	<!-- end -->
-	<div class="alert alert-warning text-center"
+	 <div class="alert alert-warning text-center"
 		data-ng-hide="!courses.$resolved || courses.length">
-		No courses yet, why don't you <a href="/#!/courses/create">create
-			one</a>?
+		No courses yet, why don't you add one? <!--<a href="/#!/courses/create">create
+			one</a>? -->
 	</div>
 </section>
