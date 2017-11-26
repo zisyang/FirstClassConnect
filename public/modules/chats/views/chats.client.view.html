@@ -1,3 +1,56 @@
-<section data-ng-controller="ChatsController">
-	This is the Chats view
+<section data-ng-controller="ChatsController" data-ng-init="list()">
+	<!-- ngSubmit, ngModel, ngFor -->
+	<div class="container">
+	  <div class="row chat-window col-xs-5 col-md-3">
+	    <div class="col-xs-12 col-md-12">
+	        <div class="panel">
+	            <div class="panel-heading chat-top-bar">
+	                <div class="col-md-8 col-xs-8">
+	                    <h3 class="panel-title">
+												<i class='{{glyphicon}}'></i>
+												Chat Room {{chatroom}}</h3>
+	                </div>
+	            </div>
+	            <div class="panel-body">
+	                <div class="msg-container-base">
+	                    <div class="row msg-container" data-ng-repeat="chat in chats">
+	                        <div class="col-md-12 col-xs-12">
+	                            <div class="chat-msg">
+	                                <!-- <img *ngIf="message.imageUrl"
+	                                          class="profile"
+	                                          [ngClass]="{'pull-right': selfAuthored, 'pull-left': !selfAuthored}"
+	                                          [src]="message.imageUrl" /> -->
+																	<div class="chat-msg-author">
+																 		 <strong>{{ chat.username }}</strong>&nbsp;
+																 		 <span class="time">{{ chat.created | date: 'shortTime' }}</span>
+																  	<p><i class='{{glyphicon}}'></i> {{ chat.message }}</p>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="chat-bottom-bar">
+	                    <form style="display:inherit" data-ng-submit="sendMessage()">
+												<fieldset>
+	                        <div class="input-group" >
+	                            <input type="text"
+	                                      class="form-control input-sm chat-input"
+	                                      placeholder="Enter message"
+	                                      name= "message" id="message"
+																				data-ng-model="message">
+	                            <span class="input-group-btn">
+	                            <input type="submit" class="btn btn-sm chat-submit-button" value="Send" >
+	                        </span>
+	                        </div>
+													<div data-ng-show="error" class="text-danger">
+														<strong data-ng-bind="error"></strong>
+													</div>
+												</fieldset>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	     </div>
+	  </div>
+	</div>
 </section>

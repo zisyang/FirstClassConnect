@@ -1,15 +1,16 @@
 'use strict';
 
-angular.module('chats').factory('Chats', [
-	function() {
+//Chats service used to communicate Chats REST endpoints
+angular.module('chats').factory('Chats', ['$resource',
+	function($resource) {
 		// Chats service logic
 		// ...
-
 		// Public API
-		return {
-			someMethod: function() {
-				return true;
+		return $resource('chats/:chatId', { courseId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
 			}
-		};
+		});
 	}
 ]);

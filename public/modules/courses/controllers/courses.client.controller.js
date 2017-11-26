@@ -14,6 +14,9 @@ angular.module('courses').controller('CoursesController', [
 		$scope.pageSize = 10;
 		$scope.offset = 0;
 
+		//Icon : glyphicon
+		$scope.glyphicon="glyphicon glyphicon-book";
+
 		// Page changed handler
 		$scope.pageChanged = function() {
 			 $scope.offset = ($scope.currentPage - 1) * $scope.pageSize;
