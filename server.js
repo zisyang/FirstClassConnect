@@ -52,7 +52,19 @@ var serve = http.createServer(app);
 var	socketEvents = require('./socketEvents');
 
 var io = require('socket.io').listen(serve);
-socketEvents(io);
+//socketEvents(io);
+
+io.on('connection', (socket) => {
+  console.log('new connection made');
+
+   // Test Messages
+  socket.on('send-message', (data) => {
+    console.log(data.text);
+    io.emit('output', data);
+  });
+
+});
+
 
 // Expose app
 exports = module.exports = app;

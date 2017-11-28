@@ -6,11 +6,6 @@ exports = module.exports = function(io) {
   io.on('connection', function(socket){
       var chat = mongoose.model('Chat');
 
-      // Create function to send status
-      sendStatus = function(s){
-          socket.emit('status', s);
-      }
-
       // Get chats from mongo collection
       chat.find().limit(100).sort({_id:1}).toArray(function(err, res){
           if(err){
@@ -34,12 +29,6 @@ exports = module.exports = function(io) {
               // Insert message
               chat.insert({name: name, message: message}, function(){
                   client.emit('output', [data]);
-                  //
-                  // // Send status object
-                  // sendStatus({
-                  //     message: 'Message sent',
-                  //     clear: true
-                  // });
               });
           }
       });

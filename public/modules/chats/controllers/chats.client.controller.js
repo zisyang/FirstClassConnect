@@ -16,25 +16,6 @@ angular.module('chats').controller('ChatsController', [
 		$scope.chatroom = 1;
 
 		$scope.list = function() {
-			// var sample = [
-			//       {
-			//         'username': 'Matt',
-			//         'message': 'Hi!'
-			//       },
-			//       {
-			//         'username': 'Elisa',
-			//         'message': 'Whats up?'
-			//       },
-			//       {
-			//         'username': 'Matt',
-			//         'message': 'I found this nice AngularJS Directive'
-			//       },
-			//       {
-			//         'username': 'Elisa',
-			//         'message': 'Looks Great!'
-			//       }
-			//     ];
-					//$scope.chats = sample;
 			$scope.chats = Chats.query();
 		};
 
