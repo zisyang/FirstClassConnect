@@ -35,14 +35,14 @@ exports.create = function(req, res) {
  * List of Chats
  */
 exports.list = function(req, res) {
-  Chat.find().sort('created').populate('user', 'displayName').exec(function(err, chat) {
+  Chat.find().sort('created').populate('user', 'displayName').exec(function(err, chats) {
       if (err) {
           return res.status(400).send({
               message: errorHandler.getErrorMessage(err)
           });
       } else {
-					console.log(chat);
-          res.json(chat);
+					console.log("GET: find() : " + chats);
+          res.json(chats);
       }
     });
 };

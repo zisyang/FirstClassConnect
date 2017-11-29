@@ -9,8 +9,8 @@
 	                    <h2>
 												<i class='{{glyphicon}}'></i>
 												Chat Room
-											<a class="btn btn-primary" href="/#!/chats/new">
-												<i class="glyphicon glyphicon-plus"></i></a>
+											<!-- <a class="btn btn-primary" href="/#!/chats/new">
+												<i class="glyphicon glyphicon-plus"></i></a> -->
 											</h2>
 												<!-- {{chatroom}}</h2> -->
 	                </div>
@@ -25,13 +25,22 @@
 	                                          [ngClass]="{'pull-right': selfAuthored, 'pull-left': !selfAuthored}"
 	                                          [src]="message.imageUrl" /> -->
 																	<div class="chat-msg-author">
-																 		 <strong>{{ chat.username }}</strong>&nbsp;
+																 		 <span data-ng-show="authentication.user._id == chat.user._id">
+																			 <strong>You</strong>
+																		 </span>
+																		 <span data-ng-hide="authentication.user._id == chat.user._id">
+																			  <strong>{{ chat.username }}</strong>
+																			</span>
+																		 &nbsp;
 																 		 <span class="time">{{ chat.created | date: 'mediumTime' }}</span>
 																  	<p><i class='{{glyphicon}}'></i> {{ chat.message }}</p>
 	                                </div>
 	                            </div>
 	                        </div>
 	                    </div>
+											<div class="alert alert-warning text-center" data-ng-if="chats.$resolved && !chats.length">
+												 You can now begin to chat
+											</div>
 	                </div>
 	                <div class="chat-bottom-bar">
 	                    <form style="display:inherit" data-ng-submit="sendMessage()">
@@ -52,8 +61,8 @@
 												</fieldset>
 	                    </form>
 	                </div>
-	            <!-- </div>
-	        </div>
+	            </div>
+	       <!-- </div>
 	     </div>
 	  </div>
 	</div> -->

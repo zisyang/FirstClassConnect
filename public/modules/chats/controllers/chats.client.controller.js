@@ -16,8 +16,8 @@ angular.module('chats').controller('ChatsController', [
 
 		$scope.chatroom = 1;
 
-		Socket.on('send-message', function(article) {
-		    console.log(article);
+		Socket.on('send-message', function(message) {
+		  //  console.log(chat);
 				$scope.list();
 		});
 
