@@ -45,31 +45,32 @@ require('./config/passport')();
 
 // Start the app by listening on <port>
 //###app.listen(config.port);
-// Added socket.io support
-var http = require('http');
-var serve = http.createServer(app);
 
-var	socketEvents = require('./socketEvents');
-
-var io = require('socket.io').listen(serve);
-//socketEvents(io);
-
-io.on('connection', (socket) => {
-  console.log('new connection made');
-
-   // Test Messages
-  socket.on('send-message', (data) => {
-    console.log(data.text);
-    io.emit('output', data);
-  });
-
-});
+// // Added socket.io support
+// var http = require('http');
+// var serve = http.createServer(app);
+//
+// var	socketEvents = require('./socketEvents');
+//
+// var io = require('socket.io').listen(serve);
+// //socketEvents(io);
+//
+// io.on('connection', (socket) => {
+//   console.log('new connection made');
+//
+//    // Test Messages
+//   socket.on('send-message', (data) => {
+//     console.log(data.text);
+//     io.emit('output', data);
+//   });
+//
+// });
 
 
 // Expose app
 exports = module.exports = app;
 
 // Logging initialization
-serve.listen(config.port, function() {
-console.log('MEAN.JS application started on port ' + config.port);
+app.get('server').listen(config.port, function() {
+	console.log('MEAN.JS application started on port ' + config.port);
 });

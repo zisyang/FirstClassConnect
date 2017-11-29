@@ -23,6 +23,9 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			var socketio = req.app.get('socketio'); // tacke out socket instance from the app container
+			socketio.sockets.emit('send-message', chat); // emit an event for all connected clients
+
 			res.json(chat);
 		}
 	});
@@ -32,12 +35,13 @@ exports.create = function(req, res) {
  * List of Chats
  */
 exports.list = function(req, res) {
-  Chat.find().sort('created').populate('user', 'displayName').exec(function(err, chat) {
+  Chat.find().sort('-created').populate('user', 'displayName').exec(function(err, chat) {
       if (err) {
           return res.status(400).send({
               message: errorHandler.getErrorMessage(err)
           });
       } else {
+					console.log(chat);
           res.json(chat);
       }
     });

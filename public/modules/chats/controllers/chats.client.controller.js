@@ -4,9 +4,10 @@ angular.module('chats').controller('ChatsController', [
 	'$scope',
 	'$stateParams',
 	'$location',
+	'Socket',
 	'Authentication',
 	'Chats',
-	function($scope, $stateParams, $location, Authentication, Chats) {
+	function($scope, $stateParams, $location, Socket, Authentication, Chats) {
 		// Controller Logic
 		// ...
 		$scope.authentication = Authentication;
@@ -14,6 +15,11 @@ angular.module('chats').controller('ChatsController', [
 		$scope.glyphicon = "glyphicon glyphicon-comment";
 
 		$scope.chatroom = 1;
+
+		Socket.on('send-message', function(article) {
+		    console.log(article);
+				$scope.list();
+		});
 
 		$scope.list = function() {
 			$scope.chats = Chats.query();
