@@ -41,10 +41,17 @@
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+
+	<style>
+	#navbar-shadow {
+	    box-shadow: 10px 10px 5px grey;
+	}
+	</style>
+
 </head>
 
 <body class="ng-cloak">
-	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
+	<header id="navbar-shadow" data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
 	<section class="content">
 		<section class="container">
 			{% block content %}{% endblock %}
@@ -72,7 +79,7 @@
 <script
     type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/angular-socket-io/0.7.0/socket.min.js"></script>
-<!-- <script
-		src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/master/src/scrollglue.js"></script> -->
+<script
+		src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/master/src/scrollglue.js"></script>
 
 </html>

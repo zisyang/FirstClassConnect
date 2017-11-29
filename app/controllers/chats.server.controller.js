@@ -35,7 +35,7 @@ exports.create = function(req, res) {
  * List of Chats
  */
 exports.list = function(req, res) {
-  Chat.find().sort('-created').populate('user', 'displayName').exec(function(err, chat) {
+  Chat.find().sort('created').populate('user', 'displayName').exec(function(err, chat) {
       if (err) {
           return res.status(400).send({
               message: errorHandler.getErrorMessage(err)

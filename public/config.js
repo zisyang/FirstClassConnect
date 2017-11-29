@@ -4,7 +4,10 @@
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'mean';
-	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils', 'btford.socket-io'];
+	var applicationModuleVendorDependencies =
+		[ 'ngResource', 'ngCookies', 'ngAnimate', 'ngTouch', 'ngSanitize',
+				'ui.router', 'ui.bootstrap', 'ui.utils',
+				'btford.socket-io','luegg.directives' ]; //socket.io, scroll-glue (auto to bottom)
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {

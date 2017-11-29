@@ -78,7 +78,7 @@ box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 /* line 26, ../sass/components/chat-msg-container.scss */
 .msg-container-base .msg-container {
 display: flex;
-overflow: hidden;
+overflow: auto;
 padding: 10px;
 }
 

@@ -13,7 +13,7 @@ var init = require('./config/init')(),
  */
 
 // Bootstrap db connection
-// var uri = 'mongodb://mongodb-stitch-fcc-eysro:ltXAYleAUAKrXQTu@cluster0-shard-00-00-2pmo6.mongodb.net:27017/mean-dev?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin';
+// var uri = 'mongodb://mongodb-stitch-fcc-eysro:#####@cluster0-shard-00-00-2pmo6.mongodb.net:27017/mean-dev?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin';
 //mongoose.connect(uri);
 var uri = config.db; //localhost
 var db = mongoose.connect(uri, function(err) {
@@ -45,27 +45,6 @@ require('./config/passport')();
 
 // Start the app by listening on <port>
 //###app.listen(config.port);
-
-// // Added socket.io support
-// var http = require('http');
-// var serve = http.createServer(app);
-//
-// var	socketEvents = require('./socketEvents');
-//
-// var io = require('socket.io').listen(serve);
-// //socketEvents(io);
-//
-// io.on('connection', (socket) => {
-//   console.log('new connection made');
-//
-//    // Test Messages
-//   socket.on('send-message', (data) => {
-//     console.log(data.text);
-//     io.emit('output', data);
-//   });
-//
-// });
-
 
 // Expose app
 exports = module.exports = app;

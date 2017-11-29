@@ -25,6 +25,18 @@ $ bower install angular-socket-io --save
 $ npm install --save socket.io
 ```
 
+* augular-scroll-glue (autoscroll down when new message arrived) - An AngularJs directive that automatically scrolls to the bottom of an element on changes in its scope.
+
+Install
+Bower
+```
+$ bower install angular-scroll-glue --save
+```
+npm
+```
+$ npm i angularjs-scroll-glue
+```
+
 ## Quick Install
 Once you've downloaded the boilerplate and installed all the prerequisites, you're just a few steps away from starting to develop you MEAN application.
 
