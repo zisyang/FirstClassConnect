@@ -18,9 +18,10 @@ $ sudo npm install -g grunt-cli
 $ sudo npm install -g grunt
 ```
 
-* Socket.io - to have a real time chat room, in order to install it make sure you've installed Node.js and npm, then install grunt globally using npm:
+* Socket.io - to have a real time chat room, in order to install it make sure you've installed Node.js and npm, then install grunt globally using npm & bower:
 
 ```
+$ bower install angular-socket-io --save
 $ npm install --save socket.io
 ```
 
